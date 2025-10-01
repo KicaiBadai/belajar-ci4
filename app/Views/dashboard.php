@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +26,8 @@
             color: #ecf0f1;
             display: flex;
             flex-direction: column;
-            flex-shrink: 0; /* Mencegah sidebar menyusut */
+            flex-shrink: 0;
+            /* Mencegah sidebar menyusut */
         }
 
         .sidebar-header {
@@ -96,7 +98,8 @@
         .main-content {
             flex-grow: 1;
             padding: 2rem;
-            overflow-y: auto; /* Agar bisa di-scroll jika konten panjang */
+            overflow-y: auto;
+            /* Agar bisa di-scroll jika konten panjang */
         }
 
         .header h2 {
@@ -117,11 +120,13 @@
             border-radius: 8px;
             font-size: 1rem;
         }
+
         .alert-success {
             color: #155724;
             background-color: #d4edda;
             border-color: #c3e6cb;
         }
+
         .alert-danger {
             color: #721c24;
             background-color: #f8d7da;
@@ -151,12 +156,14 @@
             text-decoration: none;
             border-radius: 8px;
             font-weight: bold;
-            margin-bottom: 1.5rem; /* Memberi jarak ke tabel di bawahnya */
+            margin-bottom: 1.5rem;
+            /* Memberi jarak ke tabel di bawahnya */
             transition: background-color 0.3s ease;
         }
 
         .btn-tambah:hover {
-            background-color: #2980b9; /* Warna sedikit lebih gelap saat hover */
+            background-color: #2980b9;
+            /* Warna sedikit lebih gelap saat hover */
         }
 
         /* Styling untuk tabel daftar pekerjaan */
@@ -165,7 +172,8 @@
             border-collapse: collapse;
         }
 
-        .job-table th, .job-table td {
+        .job-table th,
+        .job-table td {
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
@@ -189,9 +197,18 @@
             font-weight: bold;
             text-transform: capitalize;
         }
-        .status-selesai { background-color: #2ecc71; }
-        .status-dikerjakan { background-color: #3498db; }
-        .status-menunggu { background-color: #f39c12; }
+
+        .status-selesai {
+            background-color: #2ecc71;
+        }
+
+        .status-dikerjakan {
+            background-color: #3498db;
+        }
+
+        .status-menunggu {
+            background-color: #f39c12;
+        }
 
         /* Tombol aksi di tabel */
         .action-btn {
@@ -203,18 +220,26 @@
             color: white;
             margin-right: 5px;
         }
-        .btn-detail { background-color: #3498db; }
-        .btn-hapus { background-color: #e74c3c; }
+
+        .btn-detail {
+            background-color: #3498db;
+        }
+
+        .btn-hapus {
+            background-color: #e74c3c;
+        }
 
         /* === RESPONSIVE DESIGN === */
         @media (max-width: 768px) {
             .page-container {
                 flex-direction: column;
             }
+
             .sidebar {
                 width: 100%;
                 height: auto;
             }
+
             .btn-tambah {
                 display: block;
                 text-align: center;
@@ -222,6 +247,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="page-container">
@@ -233,7 +259,7 @@
                 <?php if ($role === 'superadmin'): ?>
                     <h3>Menu Superadmin</h3>
                     <ul>
-                        <li><a href="#">Kelola User</a></li>
+                        <li><a href="<?= base_url('users') ?>">Kelola User</a></li>
                         <li><a href="#">Kelola Barang</a></li>
                         <li><a href="#">Laporan</a></li>
                     </ul>
@@ -267,20 +293,20 @@
                 <h2>Selamat datang, <?= esc($username) ?>!</h2>
                 <p>Role anda: <strong><?= esc($role) ?></strong></p>
             </div>
-            
+
             <?php if (session()->getFlashdata('success')): ?>
                 <div class="alert alert-success">
                     <?= session()->getFlashdata('success') ?>
                 </div>
             <?php elseif (session()->getFlashdata('errors')): ?>
-                 <div class="alert alert-danger">
+                <div class="alert alert-danger">
                     <?= session()->getFlashdata('errors') ?>
                 </div>
             <?php endif; ?>
 
             <div class="content-card">
                 <h3>Daftar Pekerjaan Terbaru</h3>
-                
+
                 <?php if ($role === 'kepala_pegawai'): ?>
                     <a href="<?= site_url('pekerjaan/tambah') ?>" class="btn-tambah">Tambah Pekerjaan Baru</a>
                 <?php endif; ?>
@@ -295,36 +321,37 @@
                         </tr>
                     </thead>
                     <tbody>
-    <?php if (!empty($pekerjaan) && is_array($pekerjaan)): ?>
-        <?php $no = 1; ?>
-        <?php foreach ($pekerjaan as $job): ?>
-            <tr>
-                <td><?= $no++ ?></td>
-                <td><?= esc($job['judul']) ?></td>
-                <td>
-                    <span class="status status-<?= esc($job['status']) ?>"><?= esc($job['status']) ?></span>
-                </td>
-                
-                <td>
-                    <a href="<?= site_url('pekerjaan/detail/' . $job['id']) ?>" class="action-btn btn-detail">Detail</a>
-                    
-                    <?php if (isset($role) && $role === 'kepala_pegawai'): ?>
-                        <a href="<?= site_url('pekerjaan/edit/' . $job['id']) ?>" class="action-btn" style="background-color: #f39c12;">Edit</a>
-                        <a href="<?= site_url('pekerjaan/hapus/' . $job['id']) ?>" class="action-btn btn-hapus" onclick="return confirm('Apakah Anda yakin ingin menghapus pekerjaan ini?')">Hapus</a>
-                    <?php endif; ?>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <tr>
-            <td colspan="4" style="text-align: center;">Tidak ada data pekerjaan.</td>
-        </tr>
-    <?php endif; ?>
-</tbody>
+                        <?php if (!empty($pekerjaan) && is_array($pekerjaan)): ?>
+                            <?php $no = 1; ?>
+                            <?php foreach ($pekerjaan as $job): ?>
+                                <tr>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= esc($job['judul']) ?></td>
+                                    <td>
+                                        <span class="status status-<?= esc($job['status']) ?>"><?= esc($job['status']) ?></span>
+                                    </td>
+
+                                    <td>
+                                        <a href="<?= site_url('pekerjaan/detail/' . $job['id']) ?>" class="action-btn btn-detail">Detail</a>
+
+                                        <?php if (isset($role) && $role === 'kepala_pegawai'): ?>
+                                            <a href="<?= site_url('pekerjaan/edit/' . $job['id']) ?>" class="action-btn" style="background-color: #f39c12;">Edit</a>
+                                            <a href="<?= site_url('pekerjaan/hapus/' . $job['id']) ?>" class="action-btn btn-hapus" onclick="return confirm('Apakah Anda yakin ingin menghapus pekerjaan ini?')">Hapus</a>
+                                        <?php endif; ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <tr>
+                                <td colspan="4" style="text-align: center;">Tidak ada data pekerjaan.</td>
+                            </tr>
+                        <?php endif; ?>
+                    </tbody>
                 </table>
             </div>
         </main>
     </div>
 
 </body>
+
 </html>
