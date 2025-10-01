@@ -258,26 +258,26 @@
                     <h3>Menu Superadmin</h3>
                     <ul>
                         <li><a href="<?= base_url('users') ?>">Kelola User</a></li>
-                        <li><a href="#">Kelola Barang</a></li>
+                        <li><a href="#">Kelola role</a></li>
                         <li><a href="#">Laporan</a></li>
                     </ul>
                 <?php elseif ($role === 'admin'): ?>
                     <h3>Menu Admin</h3>
                     <ul>
-                        <li><a href="#">Input Barang</a></li>
-                        <li><a href="#">Data Barang</a></li>
+                        <li><a href="#">Input pegawai</a></li>
+                        <li><a href="#">Data pegawai</a></li>
                     </ul>
                 <?php elseif ($role === 'kepala_pegawai'): ?>
                     <h3>Menu Kepala Pegawai</h3>
                     <ul>
-                        <li><a href="#">Input Pegawai</a></li>
-                        <li><a href="#">Data Pegawai</a></li>
+                        <li><a href="#">Input Data Pekerjaan</a></li>
+                        <li><a href="#">Data Pekerjaan</a></li>
                     </ul>
                 <?php else: ?>
-                    <h3>Menu User</h3>
+                    <h3>Menu Pegawai</h3>
                     <ul>
-                        <li><a href="#">Lihat Produk</a></li>
-                        <li><a href="#">Riwayat Transaksi</a></li>
+                        <li><a href="#">List Pekerjaan</a></li>
+                        <li><a href="#">Riwayat Pekerjaan</a></li>
                     </ul>
                 <?php endif; ?>
             </nav>
