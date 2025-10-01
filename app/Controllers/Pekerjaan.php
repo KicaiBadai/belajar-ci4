@@ -27,7 +27,6 @@ class Pekerjaan extends BaseController
 
     public function tambah()
     {
-        // Hanya kepala pegawai yang boleh mengakses halaman tambah
         if (session()->get('role') !== 'kepala_pegawai') {
             return redirect()->to('/dashboard')->with('errors', 'Anda tidak memiliki izin untuk aksi ini.');
         }
@@ -41,7 +40,6 @@ class Pekerjaan extends BaseController
 
     public function simpan()
     {
-        // Hanya kepala pegawai yang boleh menyimpan
         if (session()->get('role') !== 'kepala_pegawai') {
             return redirect()->to('/dashboard')->with('errors', 'Anda tidak memiliki izin untuk aksi ini.');
         }
@@ -55,7 +53,6 @@ class Pekerjaan extends BaseController
 
     public function detail($id)
     {
-        // Semua role boleh melihat detail, jadi tidak perlu pengecekan
         $pekerjaan = $this->pekerjaanModel->find($id);
         if (!$pekerjaan) {
             throw PageNotFoundException::forPageNotFound();
@@ -70,7 +67,6 @@ class Pekerjaan extends BaseController
 
     public function edit($id)
     {
-        // DILINDUNGI: Hanya kepala pegawai dan pegawai yang boleh mengakses
         $allowedRoles = ['kepala_pegawai', 'pegawai'];
         if (!in_array(session()->get('role'), $allowedRoles)) {
             return redirect()->to('/dashboard')->with('errors', 'Anda tidak memiliki izin untuk aksi ini.');
@@ -91,7 +87,6 @@ class Pekerjaan extends BaseController
 
     public function update($id)
     {
-        // DILINDUNGI: Hanya kepala pegawai dan pegawai yang boleh memproses
         $allowedRoles = ['kepala_pegawai', 'pegawai'];
         if (!in_array(session()->get('role'), $allowedRoles)) {
             return redirect()->to('/dashboard')->with('errors', 'Anda tidak memiliki izin untuk aksi ini.');
@@ -106,7 +101,6 @@ class Pekerjaan extends BaseController
 
     public function hapus($id)
     {
-        // DILINDUNGI: Hanya kepala pegawai yang boleh menghapus
         if (session()->get('role') !== 'kepala_pegawai') {
             return redirect()->to('/dashboard')->with('errors', 'Anda tidak memiliki izin untuk aksi ini.');
         }

@@ -25,7 +25,6 @@ class Auth extends BaseController
         $user = $userModel->getUserByUsername($username);
 
         if ($user) {
-            // Perbandingan plain-text (TIDAK aman — sesuai permintaan)
             if ($password === $user['password']) {
                 $ses_data = [
                     'id'       => $user['id'],

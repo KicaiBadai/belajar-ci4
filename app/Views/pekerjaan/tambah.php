@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Pekerjaan Baru</title>
     <style>
-        /* Reset dasar dan font (Sama seperti halaman dashboard) */
+ 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f7f9;
@@ -18,7 +18,6 @@
             min-height: 100vh;
         }
 
-        /* === STYLING SIDEBAR (Sama seperti halaman dashboard) === */
         .sidebar {
             width: 250px;
             background-color: #2c3e50;
@@ -92,7 +91,7 @@
         }
 
 
-        /* === STYLING KONTEN UTAMA (Sama seperti halaman dashboard) === */
+        
         .main-content {
             flex-grow: 1;
             padding: 2rem;
@@ -123,7 +122,7 @@
             margin-bottom: 2rem;
         }
 
-        /* === BARU: STYLING FORM === */
+
         .form-group {
             margin-bottom: 1.5rem;
         }
@@ -142,7 +141,7 @@
             border-radius: 8px;
             font-size: 1rem;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            box-sizing: border-box; /* Penting agar padding tidak merusak layout */
+            box-sizing: border-box; 
             transition: border-color 0.3s ease;
         }
         
@@ -158,7 +157,7 @@
 
         .form-actions {
             display: flex;
-            gap: 1rem; /* Memberi jarak antar tombol */
+            gap: 1rem; 
             margin-top: 2rem;
         }
 
@@ -191,7 +190,7 @@
             background-color: #bdc3c7;
         }
         
-        /* === RESPONSIVE DESIGN (Sama seperti halaman dashboard) === */
+  
         @media (max-width: 768px) {
             .page-container {
                 flex-direction: column;
@@ -210,31 +209,31 @@
             <div class="sidebar-header">
                 Dashboard
             </div>
-            <nav class="sidebar-nav">
+              <nav class="sidebar-nav">
                 <?php if ($role === 'superadmin'): ?>
                     <h3>Menu Superadmin</h3>
                     <ul>
-                        <li><a href="#">Kelola User</a></li>
-                        <li><a href="#">Kelola Barang</a></li>
+                        <li><a href="<?= base_url('users') ?>">Kelola User</a></li>
+                        <li><a href="#">Kelola role</a></li>
                         <li><a href="#">Laporan</a></li>
                     </ul>
                 <?php elseif ($role === 'admin'): ?>
                     <h3>Menu Admin</h3>
                     <ul>
-                        <li><a href="#">Input Barang</a></li>
-                        <li><a href="#">Data Barang</a></li>
+                        <li><a href="#">Input pegawai</a></li>
+                        <li><a href="#">Data pegawai</a></li>
                     </ul>
                 <?php elseif ($role === 'kepala_pegawai'): ?>
                     <h3>Menu Kepala Pegawai</h3>
                     <ul>
-                        <li><a href="#">Input Pegawai</a></li>
-                        <li><a href="#">Data Pegawai</a></li>
+                        <li><a href="#">Input Data Pekerjaan</a></li>
+                        <li><a href="#">Data Pekerjaan</a></li>
                     </ul>
                 <?php else: ?>
-                    <h3>Menu User</h3>
+                    <h3>Menu Pegawai</h3>
                     <ul>
-                        <li><a href="#">Lihat Produk</a></li>
-                        <li><a href="#">Riwayat Transaksi</a></li>
+                        <li><a href="#">List Pekerjaan</a></li>
+                        <li><a href="#">Riwayat Pekerjaan</a></li>
                     </ul>
                 <?php endif; ?>
             </nav>

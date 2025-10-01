@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <style>
-        /* Reset dasar dan font */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f7f9;
@@ -18,7 +17,6 @@
             min-height: 100vh;
         }
 
-        /* === STYLING SIDEBAR === */
         .sidebar {
             width: 250px;
             background-color: #2c3e50;
@@ -26,7 +24,6 @@
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
-            /* Mencegah sidebar menyusut */
         }
 
         .sidebar-header {
@@ -92,13 +89,10 @@
             background-color: #c0392b;
         }
 
-
-        /* === STYLING KONTEN UTAMA === */
         .main-content {
             flex-grow: 1;
             padding: 2rem;
             overflow-y: auto;
-            /* Agar bisa di-scroll jika konten panjang */
         }
 
         .header h2 {
@@ -111,7 +105,6 @@
             color: #7f8c8d;
         }
 
-        /* BARU: Style untuk notifikasi */
         .alert {
             padding: 15px;
             margin-bottom: 20px;
@@ -146,7 +139,6 @@
             padding-bottom: 1rem;
         }
 
-        /* Styling untuk tombol tambah pekerjaan */
         .btn-tambah {
             display: inline-block;
             background-color: #3498db;
@@ -156,16 +148,13 @@
             border-radius: 8px;
             font-weight: bold;
             margin-bottom: 1.5rem;
-            /* Memberi jarak ke tabel di bawahnya */
             transition: background-color 0.3s ease;
         }
 
         .btn-tambah:hover {
             background-color: #2980b9;
-            /* Warna sedikit lebih gelap saat hover */
         }
 
-        /* Styling untuk tabel daftar pekerjaan */
         .job-table {
             width: 100%;
             border-collapse: collapse;
@@ -187,7 +176,6 @@
             background-color: #f9f9f9;
         }
 
-        /* Badge untuk status */
         .status {
             padding: 4px 10px;
             border-radius: 15px;
@@ -209,7 +197,6 @@
             background-color: #f39c12;
         }
 
-        /* Tombol aksi di tabel */
         .action-btn {
             padding: 6px 12px;
             border: none;
@@ -228,7 +215,6 @@
             background-color: #e74c3c;
         }
 
-        /* === RESPONSIVE DESIGN === */
         @media (max-width: 768px) {
             .page-container {
                 flex-direction: column;
