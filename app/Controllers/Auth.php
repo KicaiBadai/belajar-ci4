@@ -10,8 +10,8 @@ class Auth extends BaseController
 {
     public function index()
     {
-        // tampilan form login
-        return view('login');
+        // tampilkan form login
+        return view('auth/login');
     }
 
     public function login()
@@ -25,8 +25,8 @@ class Auth extends BaseController
         $user = $userModel->getUserByUsername($username);
 
         if ($user) {
-            // password di database harus di-hash pakai password_hash()
-            if (password_verify($password, $user['password'])) {
+            // Perbandingan plain-text (TIDAK aman — sesuai permintaan)
+            if ($password === $user['password']) {
                 $ses_data = [
                     'id'       => $user['id'],
                     'username' => $user['username'],
@@ -49,6 +49,6 @@ class Auth extends BaseController
     public function logout()
     {
         session()->destroy();
-        return redirect()->to('login');
+        return redirect()->to('/auth');
     }
 }
