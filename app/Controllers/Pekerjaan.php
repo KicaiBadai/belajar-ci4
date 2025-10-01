@@ -45,7 +45,7 @@ class Pekerjaan extends BaseController
         if (session()->get('role') !== 'kepala_pegawai') {
             return redirect()->to('/dashboard')->with('errors', 'Anda tidak memiliki izin untuk aksi ini.');
         }
-        
+
         if ($this->pekerjaanModel->save($this->request->getPost())) {
             return redirect()->to('/dashboard')->with('success', 'Pekerjaan baru berhasil ditambahkan!');
         } else {
@@ -70,8 +70,9 @@ class Pekerjaan extends BaseController
 
     public function edit($id)
     {
-        // DILINDUNGI: Hanya kepala pegawai yang boleh mengakses halaman edit
-        if (session()->get('role') !== 'kepala_pegawai') {
+        // DILINDUNGI: Hanya kepala pegawai dan pegawai yang boleh mengakses
+        $allowedRoles = ['kepala_pegawai', 'pegawai'];
+        if (!in_array(session()->get('role'), $allowedRoles)) {
             return redirect()->to('/dashboard')->with('errors', 'Anda tidak memiliki izin untuk aksi ini.');
         }
 
@@ -79,6 +80,7 @@ class Pekerjaan extends BaseController
         if (!$pekerjaan) {
             throw PageNotFoundException::forPageNotFound();
         }
+
         $data = [
             'username'  => session()->get('username'),
             'role'      => session()->get('role'),
@@ -86,14 +88,15 @@ class Pekerjaan extends BaseController
         ];
         return view('pekerjaan/edit', $data);
     }
-    
+
     public function update($id)
     {
-        // DILINDUNGI: Hanya kepala pegawai yang boleh memproses update
-        if (session()->get('role') !== 'kepala_pegawai') {
+        // DILINDUNGI: Hanya kepala pegawai dan pegawai yang boleh memproses
+        $allowedRoles = ['kepala_pegawai', 'pegawai'];
+        if (!in_array(session()->get('role'), $allowedRoles)) {
             return redirect()->to('/dashboard')->with('errors', 'Anda tidak memiliki izin untuk aksi ini.');
         }
-        
+
         if ($this->pekerjaanModel->update($id, $this->request->getPost())) {
             return redirect()->to('/dashboard')->with('success', 'Pekerjaan berhasil diperbarui!');
         } else {

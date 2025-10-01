@@ -335,8 +335,14 @@
                                         <a href="<?= site_url('pekerjaan/detail/' . $job['id']) ?>" class="action-btn btn-detail">Detail</a>
 
                                         <?php if (isset($role) && $role === 'kepala_pegawai'): ?>
+
                                             <a href="<?= site_url('pekerjaan/edit/' . $job['id']) ?>" class="action-btn" style="background-color: #f39c12;">Edit</a>
                                             <a href="<?= site_url('pekerjaan/hapus/' . $job['id']) ?>" class="action-btn btn-hapus" onclick="return confirm('Apakah Anda yakin ingin menghapus pekerjaan ini?')">Hapus</a>
+
+                                        <?php elseif (isset($role) && $role === 'pegawai'): ?>
+
+                                            <a href="<?= site_url('pekerjaan/edit/' . $job['id']) ?>" class="action-btn" style="background-color: #f39c12;">Edit</a>
+
                                         <?php endif; ?>
                                     </td>
                                 </tr>
