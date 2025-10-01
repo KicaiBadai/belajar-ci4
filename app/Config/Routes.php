@@ -5,14 +5,23 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'Home::index');
+
+// --- Rute Halaman Utama & Autentikasi ---
+$routes->get('/', 'Home::index'); // Halaman landing/home
 $routes->get('auth', 'Auth::index');
 $routes->post('auth/login', 'Auth::login');
-<<<<<<< HEAD
-$routes->get('authlogout', 'Auth::logout');
-$routes->get('dashboard', 'Dashboard::index');
-=======
 $routes->get('auth/logout', 'Auth::logout');
 
->>>>>>> 6bbfd59b7aec29399aa6284b44b0495dcceb93a0
 
+// --- Rute Dashboard ---
+// HANYA SATU definisi untuk dashboard, yang diarahkan ke controller Pekerjaan
+$routes->get('dashboard', 'Pekerjaan::index');
+
+
+// --- Rute untuk Fitur Pekerjaan (CRUD) ---
+$routes->get('pekerjaan/tambah', 'Pekerjaan::tambah');
+$routes->post('pekerjaan/simpan', 'Pekerjaan::simpan');
+$routes->get('pekerjaan/detail/(:num)', 'Pekerjaan::detail/$1');
+$routes->get('pekerjaan/edit/(:num)', 'Pekerjaan::edit/$1');
+$routes->post('pekerjaan/update/(:num)', 'Pekerjaan::update/$1');
+$routes->get('pekerjaan/hapus/(:num)', 'Pekerjaan::hapus/$1');
