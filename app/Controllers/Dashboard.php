@@ -9,12 +9,17 @@ class Dashboard extends BaseController
 {
     public function index()
     {
-        $session = session();
+        
+        $session= session();
 
         $data = [
             'username' => $session->get('username'),
-            'role'     => $session->get('role'),
+            'role'     => $session->get('role')
         ];
+
         return view('dashboard', $data);
+    
     }
+
+    
 }
