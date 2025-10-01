@@ -6,13 +6,13 @@ use CodeIgniter\Model;
 
 class PekerjaanModel extends Model
 {
-    protected $table            = 'pekerjaans';
+    protected $table            = 'pekerjaan';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['judul', 'deskripsi', 'status'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
