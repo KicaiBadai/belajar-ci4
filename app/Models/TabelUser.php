@@ -48,4 +48,9 @@ class TabelUser extends Model
     {
         return $this->where('username', $username)->first();
     }
+
+    public function getAllUsers()
+    {
+        return $this->findAll();   // bawaan CI4
+    }
 }
